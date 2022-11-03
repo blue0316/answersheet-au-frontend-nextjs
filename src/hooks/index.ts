@@ -10,4 +10,3 @@ export { default as useFilter } from "./use-filter";
 export { default as useCountdown } from "./use-countdown";
 export { default as useKeyboardFocus } from "./use-keyboard-focus";
 export { default as useMount } from "./use-mount";
-export { default as useAuth } from "./use-auth";

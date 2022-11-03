@@ -1,92 +1,43 @@
-import React from "react";
-import { getSession, signIn, signOut } from "next-auth/react";
+import { signOut, useSession, getSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
-import { Session } from "next-auth";
-import { GetServerSideProps } from "next";
+import { useEffect } from "react";
 
-type PropsType = {
-    session: Session;
-};
-
-const TestPage = ({ session }: PropsType) => {
-    const signInButtonNode = () => {
-        if (session) {
-            return false;
-        }
-
-        return (
-            <div>
-                <Link href="/api/auth/signin">
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            signIn();
-                        }}
-                    >
-                        Sign In
-                    </button>
-                </Link>
-            </div>
-        );
-    };
-
-    const signOutButtonNode = () => {
-        if (!session) {
-            return false;
-        }
-
-        return (
-            <div>
-                <Link href="/api/auth/signout">
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            signOut();
-                        }}
-                    >
-                        Sign Out
-                    </button>
-                </Link>
-            </div>
-        );
-    };
-
-    if (!session) {
-        return (
-            <div className="hero">
-                <div className="navbar">
-                    {signOutButtonNode()}
-                    {signInButtonNode()}
-                </div>
-                <div className="text">
-                    You aren't authorized to view this page
-                </div>
-            </div>
-        );
-    }
+export default function Home() {
+    const { data: session } = useSession();
+    useEffect(() => {
+        if (session == null) return;
+    }, [session]);
 
     return (
-        <div className="hero">
+        <div>
             <Head>
-                <title>Index Page</title>
+                <title>Strapi - Next - NextAuth</title>
             </Head>
-            <div className="navbar">
-                {signOutButtonNode()}
-                {signInButtonNode()}
-            </div>
-            <div className="text">Hello world</div>
+            <h1>{session ? "Authenticated" : "Not Authenticated"}</h1>
+            {session && (
+                <div style={{ marginBottom: 10 }}>
+                    <h3>Session Data</h3>
+                    <div>Email: {session.user?.email}</div>
+                    <div>JWT from Strapi: Check console</div>
+                </div>
+            )}
+            {session ? (
+                <button onClick={() => signOut()}>Sign out</button>
+            ) : (
+                <Link href="/auth/sign-in">
+                    <button>Sign In</button>
+                </Link>
+            )}
+            <Link href="/protected">
+                <button
+                    style={{
+                        marginTop: 10,
+                    }}
+                >
+                    Protected Page
+                </button>
+            </Link>
         </div>
     );
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-    const session = await getSession({ req });
-    return {
-        props: {
-            session,
-        },
-    };
-};
-
-export default TestPage;
+}

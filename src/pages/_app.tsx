@@ -24,7 +24,8 @@ interface CustomAppProps extends Omit<AppProps, "Component"> {
 const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     const router = useRouter();
     const Layout = Component.Layout || FallbackLayout;
-    const layoutProps = typeof pageProps.layout === "object" ? pageProps.layout : {};
+    const layoutProps =
+        typeof pageProps.layout === "object" ? pageProps.layout : {};
     const session = pageProps.session as Session;
 
     useEffect(() => {
@@ -43,7 +44,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
                 <UserProvider>
                     <Layout {...layoutProps}>
                         <SEO />
-                            <Component {...pageProps} />
+                        <Component {...pageProps} />
                     </Layout>
                 </UserProvider>
             </UIProvider>

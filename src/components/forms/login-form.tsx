@@ -8,9 +8,10 @@ import FeedbackText from "@ui/form-elements/feedback";
 import Button from "@ui/button";
 import { hasKey } from "@utils/methods";
 import { useUser } from "@contexts/user-context";
+import { signIn, SignInResponse } from "next-auth/react";
 
 interface IFormValues {
-    useremail: string;
+    email: string;
     password: string;
 }
 
@@ -24,21 +25,27 @@ const LoginForm = () => {
         formState: { errors },
     } = useForm<IFormValues>({
         defaultValues: {
-            useremail: "Admin",
-            password: "Admin",
+            email: "example@domain.com",
+            password: "password",
         },
     });
 
-    const onSubmit: SubmitHandler<IFormValues> = (data) => {
-        setLogin(data);
-        setServerState("");
-        if (window?.history?.length > 2) {
-            router.back();
+    const onSubmit: SubmitHandler<IFormValues> = async (data) => {
+        const result: SignInResponse | undefined = await signIn("credentials", {
+            redirect: false,
+            ...data,
+        });
+        if (result && result.ok) {
+            setLogin();
+            setServerState("");
+            if (window?.history?.length > 2) {
+                router.back();
+            } else {
+                router.replace("/");
+            }
+        } else {
+            setServerState("Email or password is incorrect");
         }
-        // if (data.useremail === "Admin" && data.password === "Admin") {
-        // } else {
-        //     setServerState("Useremail or password is incorrect");
-        // }
     };
 
     return (
@@ -47,25 +54,23 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <div className="tw-mb-7.5">
                     <label
-                        htmlFor="useremail"
+                        htmlFor="email"
                         className="tw-text-heading tw-text-md"
                     >
-                        Useremail *
+                        Email *
                     </label>
                     <Input
-                        id="useremail"
-                        placeholder="Useremail"
+                        id="email"
+                        placeholder="Email"
                         bg="light"
-                        feedbackText={errors?.useremail?.message}
-                        state={
-                            hasKey(errors, "useremail") ? "error" : "success"
-                        }
-                        showState={!!hasKey(errors, "useremail")}
-                        {...register("useremail", {
-                            required: "Useremail is required",
+                        feedbackText={errors?.email?.message}
+                        state={hasKey(errors, "email") ? "error" : "success"}
+                        showState={!!hasKey(errors, "email")}
+                        {...register("email", {
+                            required: "Email is required",
                         })}
                     />
-                    <small>Default Useremail: Admin</small>
+                    <small>Default Email: Admin</small>
                 </div>
                 <div className="tw-mb-7.5">
                     <label
@@ -90,9 +95,20 @@ const LoginForm = () => {
                     <small>Default Password: Admin</small>
                 </div>
                 <Checkbox name="remember" id="remember" label="Remember me" />
-                <Button type="submit" fullwidth className="tw-mt-7.5">
-                    Log In
-                </Button>
+                <div className="tw-flex -tw-mx-4">
+                    <Button
+                        type="submit"
+                        className="tw-flex-1 tw-mt-7.5 tx-mx-4"
+                    >
+                        Log In
+                    </Button>
+                    <Button
+                        path="/register"
+                        className="tw-flex-1 tw-mt-7.5 tx-mx-4"
+                    >
+                        Register
+                    </Button>
+                </div>
                 {serverState && <FeedbackText>{serverState}</FeedbackText>}
             </form>
         </div>

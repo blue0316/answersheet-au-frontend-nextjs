@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 module.exports = {
-    content: ["./src/**/*.tsx"],
+    content: ["./src/**/*.{tsx, ts, jsx, js}"],
     prefix: "tw-",
     theme: {
         extend: {
@@ -283,6 +283,7 @@ module.exports = {
             addVariant("third", "&:nth-child(3)");
         },
         require("@tailwindcss/typography"),
+        require("@tailwindcss/forms"),
         function addComponentsFunc({ addComponents }) {
             addComponents({
                 ".container": {
