@@ -182,13 +182,23 @@ const RegisterForm = () => {
                     onClick={checkPolicy}
                 />
                 <div className="tw-flex tw--mx-2">
-                    <Button
-                        disabled={!policy}
-                        type="submit"
-                        className="tw-flex-1 tw-mt-7.5 tw-mx-2"
-                    >
-                        Register
-                    </Button>
+                    {policy ? (
+                        <Button
+                            disabled={!policy}
+                            type="submit"
+                            className="tw-flex-1 tw-mt-7.5 tw-mx-2"
+                        >
+                            Register
+                        </Button>
+                    ) : (
+                        <Button
+                            disabled={!policy}
+                            type="submit"
+                            className="tw-flex-1 tw-mt-7.5 tw-mx-2 tw-pointer-events-none"
+                        >
+                            Register
+                        </Button>
+                    )}
                     <Button
                         path="/login"
                         className="tw-flex-1 tw-mt-7.5 tw-mx-2"
