@@ -98,13 +98,13 @@ const LoginForm = () => {
                 <div className="tw-flex tw--mx-2">
                     <Button
                         type="submit"
-                        className="tw-flex-1 tw-mt-7.5 tx-mx-2"
+                        className="tw-flex-1 tw-mt-7.5 tw-mx-2"
                     >
                         Log In
                     </Button>
                     <Button
                         path="/register"
-                        className="tw-flex-1 tw-mt-7.5 tx-mx-2"
+                        className="tw-flex-1 tw-mt-7.5 tw-mx-2"
                     >
                         Register
                     </Button>

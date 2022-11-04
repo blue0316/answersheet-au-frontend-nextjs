@@ -185,11 +185,14 @@ const RegisterForm = () => {
                     <Button
                         disabled={!policy}
                         type="submit"
-                        className="tw-mt-7.5 tw-mx-2"
+                        className="tw-flex-1 tw-mt-7.5 tw-mx-2"
                     >
                         Register
                     </Button>
-                    <Button path="/login" className="tw-mt-7.5 tw-mx-2">
+                    <Button
+                        path="/login"
+                        className="tw-flex-1 tw-mt-7.5 tw-mx-2"
+                    >
                         Login
                     </Button>
                 </div>
