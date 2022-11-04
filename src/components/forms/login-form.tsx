@@ -70,7 +70,7 @@ const LoginForm = () => {
                             required: "Email is required",
                         })}
                     />
-                    <small>Default Email: Fake@gmail.com</small>
+                    <small>Default Email: fakeone@gmail.com</small>
                 </div>
                 <div className="tw-mb-7.5">
                     <label

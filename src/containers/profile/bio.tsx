@@ -89,7 +89,14 @@ const ProfileBio = () => {
                             <i className="fab fa-youtube" />
                         </SocialLink>
                     </Social>
-                    <Button onClick={signOut}>Log Out</Button>
+                    <Button
+                        onClick={() => {
+                            localStorage.removeItem("AnswerSheetAuthKey");
+                            signOut();
+                        }}
+                    >
+                        Log Out
+                    </Button>
                 </div>
             </div>
         </Section>
