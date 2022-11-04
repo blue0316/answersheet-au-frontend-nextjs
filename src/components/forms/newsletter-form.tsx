@@ -23,7 +23,7 @@ const NewsletterForm = forwardRef<HTMLFormElement, TProps>(
             formState: { errors },
         } = useForm<IFormValues>();
 
-        const onSubmit: SubmitHandler<IFormValues> = (data) => {
+        const onSubmit: SubmitHandler<IFormValues> = () => {
             // eslint-disable-next-line no-console
             setMessage("Thank you for your message!");
         };

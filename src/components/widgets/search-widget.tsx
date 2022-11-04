@@ -11,7 +11,7 @@ const SearchWidget = ({ className }: TProps) => {
     const router = useRouter();
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!search) return;
+        if (!search) return null;
         void router.push(
             {
                 pathname: "/blogs/search",

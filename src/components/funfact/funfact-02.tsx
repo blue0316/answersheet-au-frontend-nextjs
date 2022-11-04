@@ -15,25 +15,26 @@ const FunFact = forwardRef<HTMLDivElement, TProps>(
         const [inView, setInView] = useState(false);
 
         const viewPortHandler = () => {
-            if (inView) return;
+            if (inView) return null;
             setInView(true);
         };
 
         const nodeRef = useRef<HTMLSpanElement>(null);
 
         useEffect(() => {
-            if (!inView) return;
             const node = nodeRef.current;
-            if (!node) return;
 
-            const controls = animate(0, counter, {
-                duration: 1,
-                onUpdate(value) {
-                    node.textContent = value.toFixed(3).replace(/[.,]000$/, "");
-                },
-            });
-
-            return () => controls.stop();
+            if (inView && node) {
+                const controls = animate(0, counter, {
+                    duration: 1,
+                    onUpdate(value) {
+                        node.textContent = value
+                            .toFixed(3)
+                            .replace(/[.,]000$/, "");
+                    },
+                });
+                () => controls.stop();
+            }
         }, [counter, inView]);
 
         return (

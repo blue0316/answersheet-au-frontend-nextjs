@@ -1,10 +1,10 @@
 import { NextRouter } from "next/router";
-import instance, { linstance } from "./api";
+import instance from "./api";
 
 type SignInResponse = {
     jwt: string;
     user: {
-        id: number;
+        id: string;
         username: string;
         email: string;
         provider: "local";

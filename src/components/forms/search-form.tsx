@@ -14,7 +14,7 @@ const SearchForm = forwardRef<HTMLFormElement, TProps>(
         const router = useRouter();
         const onSubmit = (e: React.FormEvent) => {
             e.preventDefault();
-            if (!search) return;
+            if (!search) return null;
             void router.push(
                 {
                     pathname: "/courses/search",

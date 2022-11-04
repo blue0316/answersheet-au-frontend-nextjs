@@ -15,7 +15,7 @@ export default function SignIn() {
         });
         if (result.ok) {
             router.replace("/");
-            return;
+            return null;
         }
         alert("Credential is not valid");
     };

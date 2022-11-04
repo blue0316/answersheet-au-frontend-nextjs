@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 
 // Import providers
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import { confirmEmail, register, signIn } from "@utils/auth";
+import { signIn } from "@utils/auth";
 
 const options: any = {
     providers: [
@@ -23,7 +23,7 @@ const options: any = {
                 email: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(credentials, req) {
+            async authorize(credentials): Promise<User & { jwt: string }> {
                 /**
                  * This function is used to define if the user is authenticated or not.
                  * If authenticated, the function should return an object contains the user data.
@@ -58,7 +58,7 @@ const options: any = {
             session.jwt = token.jwt;
             return Promise.resolve(session);
         },
-        jwt: async ({ token, user, account }: any) => {
+        jwt: async ({ token, user }: any) => {
             const isSignIn = user ? true : false;
             if (isSignIn) {
                 // const response = await fetch(

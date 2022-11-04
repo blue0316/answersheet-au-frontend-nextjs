@@ -17,7 +17,7 @@ function useFilter<T>(
     const { type } = router.query;
 
     const filterHandler = useCallback(() => {
-        if (!value) return;
+        if (!value) return null;
         const { query } = router;
         delete query.page;
         void router.push(

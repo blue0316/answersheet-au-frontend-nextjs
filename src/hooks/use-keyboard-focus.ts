@@ -10,7 +10,7 @@ const useKeyboardFocus = <T extends HTMLElement>(
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
-            if (!open) return;
+            if (!open) return null;
 
             switch (e.key) {
                 case "Escape": {

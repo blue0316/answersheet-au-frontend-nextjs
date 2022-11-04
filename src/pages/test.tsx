@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export default function Home() {
     const { data: session } = useSession();
     useEffect(() => {
-        if (session == null) return;
+        if (session == null) return null;
     }, [session]);
 
     return (
