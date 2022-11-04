@@ -1,4 +1,6 @@
+import { signOut } from "next-auth/react";
 import Section from "@ui/section";
+import Button from "@ui/button";
 import Social, { SocialLink } from "@components/ui/social";
 
 const ProfileBio = () => {
@@ -87,6 +89,7 @@ const ProfileBio = () => {
                             <i className="fab fa-youtube" />
                         </SocialLink>
                     </Social>
+                    <Button onClick={signOut}>Log Out</Button>
                 </div>
             </div>
         </Section>
