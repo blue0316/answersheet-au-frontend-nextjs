@@ -70,7 +70,6 @@ const RegisterForm = () => {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                                 message: "invalid email address",
                             },
-                            value: "andrewjin03161992@gmail.com",
                         })}
                     />
                 </div>
@@ -95,7 +94,6 @@ const RegisterForm = () => {
                             showState={!!hasKey(errors, "reg_firstname")}
                             {...register("reg_firstname", {
                                 required: "Frist name is required",
-                                value: "Andrew",
                             })}
                         />
                     </div>
@@ -119,7 +117,6 @@ const RegisterForm = () => {
                             showState={!!hasKey(errors, "reg_lastname")}
                             {...register("reg_lastname", {
                                 required: "Last name is required",
-                                value: "Jin",
                             })}
                         />
                     </div>
@@ -147,7 +144,6 @@ const RegisterForm = () => {
                             validate: (value) =>
                                 value.match(passwordRegex) !== null ||
                                 "The password must contain one capital letter, one small letter, one number and one special letter.",
-                            value: "Pass1234!",
                         })}
                     />
                 </div>
@@ -176,7 +172,6 @@ const RegisterForm = () => {
                             validate: (value) =>
                                 value === getValues("reg_password") ||
                                 "The passwords do not match",
-                            value: "Pass1234!",
                         })}
                     />
                 </div>

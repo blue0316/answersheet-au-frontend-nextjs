@@ -70,7 +70,7 @@ const LoginForm = () => {
                             required: "Email is required",
                         })}
                     />
-                    <small>Default Email: Admin</small>
+                    <small>Default Email: Fake@gmail.com</small>
                 </div>
                 <div className="tw-mb-7.5">
                     <label
@@ -92,7 +92,7 @@ const LoginForm = () => {
                             required: "Password is required",
                         })}
                     />
-                    <small>Default Password: Admin</small>
+                    <small>Default Password: Pass1234!</small>
                 </div>
                 <Checkbox name="remember" id="remember" label="Remember me" />
                 <div className="tw-flex -tw-mx-4">
