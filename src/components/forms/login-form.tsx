@@ -95,16 +95,16 @@ const LoginForm = () => {
                     <small>Default Password: Pass1234!</small>
                 </div>
                 <Checkbox name="remember" id="remember" label="Remember me" />
-                <div className="tw-flex -tw-mx-4">
+                <div className="tw-flex tw--mx-2">
                     <Button
                         type="submit"
-                        className="tw-flex-1 tw-mt-7.5 tx-mx-4"
+                        className="tw-flex-1 tw-mt-7.5 tx-mx-2"
                     >
                         Log In
                     </Button>
                     <Button
                         path="/register"
-                        className="tw-flex-1 tw-mt-7.5 tx-mx-4"
+                        className="tw-flex-1 tw-mt-7.5 tx-mx-2"
                     >
                         Register
                     </Button>

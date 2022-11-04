@@ -73,7 +73,7 @@ const RegisterForm = () => {
                         })}
                     />
                 </div>
-                <div className="tw-flex tw-mx--2">
+                <div className="tw-flex tw--mx-2">
                     <div className="tw-flex-basis-1/2 tw-px-2 tw-mb-7.5">
                         <label
                             htmlFor="reg_firstname"
@@ -181,15 +181,18 @@ const RegisterForm = () => {
                     label="I accept the Terms and Conditions and Privacy Policy."
                     onClick={checkPolicy}
                 />
-
-                <Button
-                    disabled={!policy}
-                    type="submit"
-                    fullwidth
-                    className="tw-mt-7.5"
-                >
-                    Register
-                </Button>
+                <div className="tw-flex tw--mx-2">
+                    <Button
+                        disabled={!policy}
+                        type="submit"
+                        className="tw-mt-7.5 tw-mx-2"
+                    >
+                        Register
+                    </Button>
+                    <Button path="/login" className="tw-mt-7.5 tw-mx-2">
+                        Login
+                    </Button>
+                </div>
             </form>
         </div>
     );
