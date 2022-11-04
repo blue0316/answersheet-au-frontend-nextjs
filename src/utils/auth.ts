@@ -41,7 +41,6 @@ export const register = async (
     const res = await instance
         .post<SignInResponse>("/api/auth/local/register", data)
         .then((response) => {
-            console.log(response.data);
             sendEmail();
             localStorage.setItem("AUTH_EMAIL", data.email);
             router.push("/confirm-email");
@@ -50,7 +49,6 @@ export const register = async (
         .catch(async (error) => {
             console.error(error);
         });
-    console.log(res);
     return res;
 };
 
@@ -66,6 +64,5 @@ export const confirmEmail = async (email: string) => {
         .catch((error) => {
             console.error(error);
         });
-    console.log("confirmEmail", res);
     return res;
 };
