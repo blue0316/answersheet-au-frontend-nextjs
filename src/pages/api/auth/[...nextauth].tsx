@@ -23,7 +23,8 @@ const options: any = {
                 email: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(credentials): Promise<User & { jwt: string }> {
+            async authorize(credentials, req): Promise<User & { jwt: string }> {
+                console.log(req);
                 /**
                  * This function is used to define if the user is authenticated or not.
                  * If authenticated, the function should return an object contains the user data.
