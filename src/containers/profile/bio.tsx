@@ -90,6 +90,7 @@ const ProfileBio = () => {
                         </SocialLink>
                     </Social>
                     <Button
+                        className="tw-mt-5"
                         onClick={() => {
                             localStorage.removeItem("AnswerSheetAuthKey");
                             signOut();
