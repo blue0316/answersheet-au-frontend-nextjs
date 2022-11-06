@@ -38,18 +38,34 @@ export const register = async (
     router: NextRouter,
     sendEmail: () => void
 ) => {
-    const res = await instance
-        .post<SignInResponse>("/api/auth/local/register", data)
-        .then((response) => {
-            sendEmail();
-            localStorage.setItem("AUTH_EMAIL", data.email);
-            router.push("/confirm-email");
-            return response.data;
+    const userExistence = await instance
+        .post("/api/auth-addons/exist", {
+            email: data.email,
         })
-        .catch(async (error) => {
+        .then((res) => {
+            console.log(res);
+            return res.data;
+        })
+        .catch((error) => {
             console.error(error);
         });
-    return res;
+
+    if (userExistence && !userExistence.status) {
+        const res = await instance
+            .post<SignInResponse>("/api/auth/local/register", data)
+            .then((response) => {
+                sendEmail();
+                localStorage.setItem("AUTH_EMAIL", data.email);
+                router.push("/confirm-email");
+                return response.data;
+            })
+            .catch(async (error) => {
+                console.error(error);
+            });
+        return res;
+    } else {
+        return null;
+    }
 };
 
 export const confirmEmail = async (email: string) => {
