@@ -4,6 +4,7 @@ const instance = axios.create({
     headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
     },
     baseURL: "https://answersheet-au-strapi-backend.herokuapp.com",
 });
@@ -11,6 +12,7 @@ export const linstance = axios.create({
     headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
     },
     baseURL: process.env.NEXT_PUBLIC_URL,
 });
