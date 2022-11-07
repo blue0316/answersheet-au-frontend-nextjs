@@ -40,7 +40,9 @@ export const register = async (
 ) => {
     const userExistence = await instance
         .post("/api/auth-check", {
-            email: data.email,
+            params: {
+                email: data.email,
+            },
         })
         .then((res) => {
             console.log(res);
