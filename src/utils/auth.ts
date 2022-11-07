@@ -57,6 +57,7 @@ export const register = async (
                 sendEmail();
                 localStorage.setItem("AUTH_EMAIL", data.email);
                 router.push("/confirm-email");
+                window.alert("Successfully registered.");
                 return response.data;
             })
             .catch(async (error) => {
@@ -64,6 +65,7 @@ export const register = async (
             });
         return res;
     } else {
+        window.alert("This email is already existed.");
         return null;
     }
 };
@@ -74,10 +76,12 @@ export const confirmEmail = async (email: string) => {
             email,
         })
         .then((response) => {
+            window.alert("Success email confirmation.");
             localStorage.removeItem("AUTH_EMAIL");
             return response.data;
         })
         .catch((error) => {
+            window.alert("Email confirmation failed.");
             console.error(error);
         });
     return res;
