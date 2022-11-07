@@ -63,6 +63,7 @@ export const register = async (
                 return response.data;
             })
             .catch(async (error) => {
+                window.alert("Registration failed.");
                 console.error(error);
             });
         return res;
